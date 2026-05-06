@@ -174,7 +174,7 @@ def scrapear_harry_potter_coleccion():
         producto_final = {
             "nombre": nombre,
             "precio": float(precio),
-            "sinopsis": "Colección de Harry Potter que reúne las 8 películas principales de la saga.",
+            "sinopsis": "",
             "urlTrailer": "",
             "tipoProductoId": TIPO_PELICULA,
             "clasificacionId": CLASIFICACION_ID,
@@ -190,7 +190,9 @@ def scrapear_harry_potter_coleccion():
                 {
                     "plataformaId": PLATAFORMA_ML,
                     "url": link,
-                    "label": "Mercado Libre"
+                    "label": "Mercado Libre",
+                    "precio": float(precio),
+                    "precioActual": float(precio)
                 }
             ]
         }
