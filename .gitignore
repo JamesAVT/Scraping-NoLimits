@@ -1,0 +1,19 @@
+# Entorno virtual
+venv/
+
+# Cache Python
+__pycache__/
+*.py[cod]
+
+# Variables de entorno
+.env
+
+# Archivos generados por scraping
+productos*.csv
+productos*.json
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
