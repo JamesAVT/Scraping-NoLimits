@@ -5,7 +5,10 @@ import os
 import datetime
 
 # ================= CONFIG =================
-BASE_URL = "http://localhost:8080/api/v1"
+BASE_URL = os.getenv(
+    "API_URL",
+    "https://nolimits-backend-final.onrender.com/api/v1"
+)
 
 API_URL = f"{BASE_URL}/productos"
 LOGIN_URL = f"{BASE_URL}/auth/login"
