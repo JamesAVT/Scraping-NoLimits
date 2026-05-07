@@ -31,7 +31,7 @@ def obtener_token():
 
     resp = requests.post(
         LOGIN_URL,
-        json={"email": email, "password": password},
+        json={"correo": email, "password": password},
         timeout=10
     )
 
