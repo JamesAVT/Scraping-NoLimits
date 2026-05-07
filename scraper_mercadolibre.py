@@ -126,7 +126,6 @@ def scrapear_harry_potter_coleccion():
     for producto in productos:
         nombre_tag = producto.select_one("h3.poly-component__title-wrapper a")
         precio_tag = producto.select_one(".andes-money-amount__fraction")
-        imagen_tag = producto.select_one("img")
 
         if not nombre_tag:
             continue
@@ -156,15 +155,6 @@ def scrapear_harry_potter_coleccion():
 
         link = nombre_tag.get("href", "").split("#")[0]
 
-        imagen_url = ""
-        if imagen_tag:
-            imagen_url = (
-                imagen_tag.get("data-src")
-                or imagen_tag.get("src")
-                or imagen_tag.get("data-original")
-                or ""
-            )
-
         precio = 0
         if precio_tag:
             precio_texto = precio_tag.text.strip().replace(".", "")
@@ -180,12 +170,12 @@ def scrapear_harry_potter_coleccion():
             "clasificacionId": CLASIFICACION_ID,
             "estadoId": ESTADO_ID,
             "saga": "Harry Potter",
-            "portadaSaga": imagen_url,
+            "portadaSaga": "",
             "plataformasIds": [PLATAFORMA_ML],
             "generosIds": [],
             "empresasIds": [],
             "desarrolladoresIds": [],
-            "imagenesRutas": [imagen_url] if imagen_url else [],
+            "imagenesRutas": [],
             "linksCompra": [
                 {
                     "plataformaId": PLATAFORMA_ML,
