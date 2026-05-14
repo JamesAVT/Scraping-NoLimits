@@ -98,6 +98,34 @@ if not CLASIFICACION_ID:
 if not ESTADO_ID:
     raise Exception("No se encontró el estado Disponible.")
 
+# ================= DATOS MANUALES =================
+DATOS_MANUALES = {
+    "harry potter": {
+        "sinopsis": (
+            "Colección completa de las 8 películas de Harry Potter, "
+            "que reúne la historia del joven mago desde su llegada a Hogwarts "
+            "hasta la batalla final contra Lord Voldemort."
+        ),
+        "anio": 2011,
+        "saga": "Harry Potter",
+        "urlTrailer": "https://www.youtube.com/results?search_query=Harry+Potter+8+Film+Collection+trailer"
+    }
+}
+
+def obtener_datos_manuales(nombre):
+    nombre_lower = nombre.lower()
+
+    for clave, datos in DATOS_MANUALES.items():
+        if clave in nombre_lower:
+            return datos
+
+    return {
+        "sinopsis": "Sin sinopsis disponible.",
+        "anio": None,
+        "saga": "",
+        "urlTrailer": ""
+    }
+
 # ================= SCRAPER =================
 def scrapear_harry_potter_coleccion():
     busqueda = "harry potter coleccion 8 peliculas blu ray"
@@ -171,16 +199,19 @@ def scrapear_harry_potter_coleccion():
                 or imagen_tag.get("src")
                 or ""
             )
+        
+        manual = obtener_datos_manuales(nombre)
 
         producto_final = {
             "nombre": nombre,
             "precio": float(precio),
-            "sinopsis": "",
-            "urlTrailer": "",
+            "sinopsis": manual["sinopsis"],
+            "urlTrailer": manual["urlTrailer"],
+            "anio": manual["anio"],
             "tipoProductoId": TIPO_PELICULA,
             "clasificacionId": CLASIFICACION_ID,
             "estadoId": ESTADO_ID,
-            "saga": "Harry Potter",
+            "saga": manual["saga"],
             "portadaSaga": "",
             "plataformasIds": [PLATAFORMA_ML],
             "generosIds": [],
